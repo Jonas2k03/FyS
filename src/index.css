@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Paleta Monocromática - Escala de Grises (Modo Claro) */
+  --bg: #fafafa;
+  --bg-grad-a: #e8e8e8;
+  --bg-grad-b: #d8d8d8;
+  --surface: #ffffff;
+  --surface-2: #f5f5f5;
+  --text: #0a0a0a;
+  --text-muted: #666666;
+  --text-body: #333333;
+  --border: rgba(0, 0, 0, 0.1);
+  --primary: #4a4a4a;
+  --primary-hover: #333333;
+  --secondary: #808080;
+  --subtle: #e8e8e8;
+  --danger: #666666;
+  --danger-hover: #4a4a4a;
+  --warm: #707070;
+
+  /* Compatibilidad con nombres antiguos */
+  --color-primary: var(--primary);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-subtle: var(--text-muted);
+
+  font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: var(--text-body);
+  background-color: var(--bg);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: 
+    radial-gradient(circle at 20% 30%, var(--bg-grad-a) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, var(--bg-grad-b) 0%, transparent 40%),
+    var(--bg);
+  color: var(--text-body);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: inherit;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--text);
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Clase estándar para cards */
+.card-standard {
+  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.40);
+  color: var(--text);
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .card-standard {
+    padding: 1.75rem;
+  }
+}
+
+/* Respetar preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
