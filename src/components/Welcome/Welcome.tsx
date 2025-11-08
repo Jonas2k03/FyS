@@ -17,13 +17,59 @@ export function Welcome({ onEnter }: WelcomeProps) {
   const shouldReduceMotion = useReducedMotion();
 
   // Calcular días juntos
+  // Usamos el mismo método que DaysWidget para consistencia
+  const START_DATE_STRING = '2025-08-07'; // Fecha fija: 7 de agosto de 2025 (debe coincidir con useDashboardStorage)
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  // Función para calcular días (igual que DaysWidget)
+  const calculateDays = (startDate: string, today: Date): number => {
+    // Parsear la fecha correctamente para evitar problemas de zona horaria
+    const [year, month, day] = startDate.split('-').map(Number);
+    const start = new Date(year, month - 1, day); // month es 0-indexed en Date
+    // Normalizar ambas fechas a medianoche para calcular días completos
+    const todayNormalized = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const startNormalized = new Date(start.getFullYear(), start.getMonth(), start.getDate());
+    const diffTime = Math.abs(todayNormalized.getTime() - startNormalized.getTime());
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  };
+
+  // Actualizar la fecha actual periódicamente para detectar cambios de día
   useEffect(() => {
-    const startDate = welcomeConfig.startDate;
-    const today = new Date();
-    const diffTime = Math.abs(today.getTime() - startDate.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    setDaysTogether(diffDays);
+    // Calcular cuánto tiempo falta hasta la medianoche
+    const updateDate = () => {
+      setCurrentDate(new Date());
+    };
+
+    const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    const msUntilMidnight = tomorrow.getTime() - now.getTime();
+
+    // Actualizar inmediatamente
+    updateDate();
+
+    // Configurar timer para actualizar a medianoche
+    const midnightTimer = setTimeout(() => {
+      updateDate();
+    }, msUntilMidnight);
+
+    // Configurar intervalo para verificar cada hora (por si el usuario cambia la hora del sistema)
+    const hourlyCheck = setInterval(() => {
+      updateDate();
+    }, 60 * 60 * 1000); // Cada hora
+
+    return () => {
+      clearTimeout(midnightTimer);
+      clearInterval(hourlyCheck);
+    };
   }, []);
+
+  // Calcular días cuando cambia la fecha actual
+  useEffect(() => {
+    const totalDays = calculateDays(START_DATE_STRING, currentDate);
+    setDaysTogether(totalDays);
+  }, [currentDate]);
 
   // Animar contador de días
   useEffect(() => {
