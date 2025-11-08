@@ -21,22 +21,24 @@ export interface Song {
 }
 
 // Lista de fotos precargadas en public/fotos
+// Usamos import.meta.env.BASE_URL para que funcione con el base path configurado en vite.config.ts
+const BASE_URL = import.meta.env.BASE_URL;
 const defaultPhotos: Photo[] = [
-  { id: 'default-1', src: '/fotos/Cocinero.jpg', alt: 'Cocinero' },
-  { id: 'default-2', src: '/fotos/DormidoHermoso.jpg', alt: 'Dormido Hermoso' },
-  { id: 'default-3', src: '/fotos/DuoMaravilla.jpg', alt: 'Duo Maravilla' },
-  { id: 'default-4', src: '/fotos/Espaldota.jpg', alt: 'Espaldota' },
-  { id: 'default-5', src: '/fotos/HermosaPOSE.jpg', alt: 'Hermosa POSE' },
-  { id: 'default-6', src: '/fotos/JulioHpta.jpg', alt: 'Julio' },
-  { id: 'default-7', src: '/fotos/Lindobbsito.jpg', alt: 'Lindobbsito' },
-  { id: 'default-8', src: '/fotos/Linguini.jpg', alt: 'Linguini' },
-  { id: 'default-9', src: '/fotos/Machote.jpg', alt: 'Machote' },
-  { id: 'default-10', src: '/fotos/Muylindo.png', alt: 'Muy lindo' },
-  { id: 'default-11', src: '/fotos/NiñoHermoso.jpg', alt: 'Niño Hermoso' },
-  { id: 'default-12', src: '/fotos/Obama.jpg', alt: 'Obama' },
-  { id: 'default-13', src: '/fotos/rico.jpg', alt: 'Rico' },
-  { id: 'default-14', src: '/fotos/Sexypayaso.jpg', alt: 'Sexy payaso' },
-  { id: 'default-15', src: '/fotos/Yocansado.jpg', alt: 'Yo cansado' },
+  { id: 'default-1', src: `${BASE_URL}fotos/Cocinero.jpg`, alt: 'Cocinero' },
+  { id: 'default-2', src: `${BASE_URL}fotos/DormidoHermoso.jpg`, alt: 'Dormido Hermoso' },
+  { id: 'default-3', src: `${BASE_URL}fotos/DuoMaravilla.jpg`, alt: 'Duo Maravilla' },
+  { id: 'default-4', src: `${BASE_URL}fotos/Espaldota.jpg`, alt: 'Espaldota' },
+  { id: 'default-5', src: `${BASE_URL}fotos/HermosaPOSE.jpg`, alt: 'Hermosa POSE' },
+  { id: 'default-6', src: `${BASE_URL}fotos/JulioHpta.jpg`, alt: 'Julio' },
+  { id: 'default-7', src: `${BASE_URL}fotos/Lindobbsito.jpg`, alt: 'Lindobbsito' },
+  { id: 'default-8', src: `${BASE_URL}fotos/Linguini.jpg`, alt: 'Linguini' },
+  { id: 'default-9', src: `${BASE_URL}fotos/Machote.jpg`, alt: 'Machote' },
+  { id: 'default-10', src: `${BASE_URL}fotos/Muylindo.png`, alt: 'Muy lindo' },
+  { id: 'default-11', src: `${BASE_URL}fotos/NiñoHermoso.jpg`, alt: 'Niño Hermoso' },
+  { id: 'default-12', src: `${BASE_URL}fotos/Obama.jpg`, alt: 'Obama' },
+  { id: 'default-13', src: `${BASE_URL}fotos/rico.jpg`, alt: 'Rico' },
+  { id: 'default-14', src: `${BASE_URL}fotos/Sexypayaso.jpg`, alt: 'Sexy payaso' },
+  { id: 'default-15', src: `${BASE_URL}fotos/Yocansado.jpg`, alt: 'Yo cansado' },
 ];
 
 // Lista de canciones precargadas
@@ -287,7 +289,7 @@ export function useDashboardStorage() {
 
 
   // Guardar startDate (no hace nada, la fecha es fija)
-  const saveStartDate = useCallback((date: string) => {
+  const saveStartDate = useCallback(() => {
     // La fecha es fija y no se puede cambiar
   }, []);
 

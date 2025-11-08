@@ -17,9 +17,7 @@ export function ConfigModal({ isOpen, onClose, storage }: ConfigModalProps) {
   }, [storage.startDate, isOpen]);
 
   const handleSave = () => {
-    if (startDate) {
-      storage.saveStartDate(startDate);
-    }
+    // La fecha es fija y no se puede cambiar
     onClose();
   };
 

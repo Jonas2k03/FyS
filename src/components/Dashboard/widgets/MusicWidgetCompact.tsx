@@ -19,7 +19,6 @@ interface MusicWidgetCompactProps {
 
 export function MusicWidgetCompact({ storage }: MusicWidgetCompactProps) {
   const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
   const [currentSong, setCurrentSong] = useState<Song | null>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
@@ -59,7 +58,6 @@ export function MusicWidgetCompact({ storage }: MusicWidgetCompactProps) {
 
     const onSelect = () => {
       const selectedIndex = api.selectedScrollSnap();
-      setCurrent(selectedIndex);
       if (storage.songs[selectedIndex]) {
         setCurrentSong(storage.songs[selectedIndex]);
       }
@@ -80,13 +78,12 @@ export function MusicWidgetCompact({ storage }: MusicWidgetCompactProps) {
     }
   }, [api, storage.songs.length]);
 
-  // Establecer canción inicial
-  useEffect(() => {
-    if (storage.songs.length > 0 && !currentSong) {
-      setCurrentSong(storage.songs[0]);
-      setCurrent(0);
-    }
-  }, [storage.songs, currentSong]);
+      // Establecer canción inicial
+      useEffect(() => {
+        if (storage.songs.length > 0 && !currentSong) {
+          setCurrentSong(storage.songs[0]);
+        }
+      }, [storage.songs, currentSong]);
 
   const embedUrl = currentSong ? getEmbedUrl(currentSong.url) : null;
 

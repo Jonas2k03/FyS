@@ -195,7 +195,7 @@ export function Welcome({ onEnter }: WelcomeProps) {
       scale: 1,
       transition: {
         duration: shouldReduceMotion ? 0 : 0.6,
-        ease: [0.16, 1, 0.3, 1],
+        ease: [0.16, 1, 0.3, 1] as const,
         staggerChildren: 0.1
       }
     },
@@ -204,7 +204,7 @@ export function Welcome({ onEnter }: WelcomeProps) {
       scale: 0.95,
       transition: {
         duration: shouldReduceMotion ? 0 : 0.4,
-        ease: [0.16, 1, 0.3, 1]
+        ease: [0.16, 1, 0.3, 1] as const
       }
     }
   };
@@ -216,7 +216,7 @@ export function Welcome({ onEnter }: WelcomeProps) {
       y: 0,
       transition: {
         duration: shouldReduceMotion ? 0 : 0.5,
-        ease: [0.16, 1, 0.3, 1]
+        ease: [0.16, 1, 0.3, 1] as const
       }
     }
   };
@@ -229,7 +229,7 @@ export function Welcome({ onEnter }: WelcomeProps) {
       transition: {
         delay: shouldReduceMotion ? 0 : 0.3,
         duration: shouldReduceMotion ? 0 : 0.4,
-        ease: [0.16, 1, 0.3, 1]
+        ease: [0.16, 1, 0.3, 1] as const
       }
     },
     hover: {
@@ -237,7 +237,7 @@ export function Welcome({ onEnter }: WelcomeProps) {
       y: shouldReduceMotion ? 0 : -2,
       transition: {
         duration: 0.2,
-        ease: [0.16, 1, 0.3, 1]
+        ease: [0.16, 1, 0.3, 1] as const
       }
     },
     tap: {
@@ -248,7 +248,7 @@ export function Welcome({ onEnter }: WelcomeProps) {
       scale: 0.95,
       transition: {
         duration: shouldReduceMotion ? 0 : 0.5,
-        ease: [0.16, 1, 0.3, 1]
+        ease: [0.16, 1, 0.3, 1] as const
       }
     }
   };
