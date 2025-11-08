@@ -140,7 +140,7 @@ export function DaysWidget({ storage }: DaysWidgetProps) {
     <div className={cardClass}>
       <div className="flex items-center gap-3 mb-4">
         <CalendarDays className="w-6 h-6 text-primary flex-shrink-0" />
-        <h3 className="text-lg font-semibold text-text">Días juntxs</h3>
+        <h3 className="text-lg font-semibold text-text">Días juntos</h3>
       </div>
       <div className="flex-1 flex flex-col justify-center">
         <motion.div
