@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Heart } from 'lucide-react';
+import { Heart, Flower2 } from 'lucide-react';
+import { useState } from 'react';
 import { useDashboardStorage } from '../../hooks/useDashboardStorage';
 import { DaysWidget } from './widgets/DaysWidget';
 import { ThoughtsWidget } from './widgets/ThoughtsWidget';
@@ -7,6 +8,7 @@ import { PhotosWidget } from './widgets/PhotosWidget';
 import { NotesWidget } from './widgets/NotesWidget';
 import { TriquiWidget } from './widgets/TriquiWidget';
 import { MusicWidgetCompact } from './widgets/MusicWidgetCompact';
+import { FlowerModal } from '../FlowerModal/FlowerModal';
 
 interface DashboardProps {
   onShowWelcome?: () => void;
@@ -14,6 +16,7 @@ interface DashboardProps {
 
 export function Dashboard({ onShowWelcome }: DashboardProps) {
   const storage = useDashboardStorage();
+  const [isFlowerModalOpen, setIsFlowerModalOpen] = useState(false);
 
   if (!storage.isLoaded) {
     return (
@@ -64,16 +67,26 @@ export function Dashboard({ onShowWelcome }: DashboardProps) {
                 Un espacio que crece con nosotros
               </p>
             </div>
-            {onShowWelcome && (
+            <div className="flex items-center gap-2">
               <button
-                onClick={onShowWelcome}
+                onClick={() => setIsFlowerModalOpen(true)}
                 className="p-2 rounded-xl bg-transparent hover:bg-[rgba(0,0,0,0.05)] transition-all hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-text focus:ring-offset-2 focus:ring-offset-surface"
-                aria-label="Volver a la pantalla de bienvenida"
-                title="Volver a la bienvenida"
+                aria-label="Ver mensaje especial"
+                title="Mensaje especial"
               >
-                <Heart className="w-5 h-5 text-text-muted hover:text-text" />
+                <Flower2 className="w-5 h-5 text-text-muted hover:text-text" />
               </button>
-            )}
+              {onShowWelcome && (
+                <button
+                  onClick={onShowWelcome}
+                  className="p-2 rounded-xl bg-transparent hover:bg-[rgba(0,0,0,0.05)] transition-all hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-text focus:ring-offset-2 focus:ring-offset-surface"
+                  aria-label="Volver a la pantalla de bienvenida"
+                  title="Volver a la bienvenida"
+                >
+                  <Heart className="w-5 h-5 text-text-muted hover:text-text" />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </motion.header>
@@ -133,6 +146,9 @@ export function Dashboard({ onShowWelcome }: DashboardProps) {
           </p>
         </div>
       </motion.footer>
+
+      {/* Flower Modal */}
+      <FlowerModal isOpen={isFlowerModalOpen} onClose={() => setIsFlowerModalOpen(false)} />
     </div>
   );
 }
